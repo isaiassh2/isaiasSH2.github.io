@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Quiero</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffd6e0, #ffeaea);
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 10px double #ffb6c1;
+      border-radius: 30px;
+      box-shadow: 0 0 25px #ff6699;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #cor {
+      position: relative;
+      width: 500px;
+      height: 450px;
+      margin: 80px auto;
+      z-index: 2;
+    }
+
+    .corazon {
+      position: absolute;
+      z-index: 2;
+      background: linear-gradient(-180deg, #F50A45 0%, #d5093c 40%);
+      animation: beat 0.7s ease infinite;
+    }
+
+    .corazon.centro {
+      background: linear-gradient(-45deg, #B80734 0%, #d5093c 40%);
+    }
+
+    .centro {
+      width: 210px;
+      height: 210px;
+      bottom: 100px;
+      left: 145px;
+    }
+
+    .cara {
+      top: 50px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+    }
+
+    .izquierda { left: 62px; }
+    .derecha { right: 62px; }
+
+    .texto {
+      position: absolute;
+      margin: 125px 180px;
+      z-index: 9;
+      font-size: 35px;
+      text-align: center;
+      color: #fff;
+      line-height: 40px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #d5093c;
+      animation: justBeat 0.7s ease infinite;
+    }
+
+    .texto span {
+      font-size: 35px;
+      display: block;
+      margin-top: 10px;
+      color: #ffe;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1) rotate(225deg);
+        box-shadow: 0 0 40px #d5093c;
+      }
+      50% {
+        transform: scale(1.1) rotate(225deg);
+        box-shadow: 0 0 70px #d5093c;
+      }
+    }
+
+    @keyframes justBeat {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px #d5093c;
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 70px #d5093c;
+      }
+    }
+
+    .mensaje-oculto {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff0f5;
+      padding: 15px 20px;
+      border-radius: 15px;
+      font-size: 18px;
+      color: #d5093c;
+      box-shadow: 0 0 10px #ff66a3;
+      display: none;
+      z-index: 10;
+      font-weight: bold;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    #corazonCentral:hover + .mensaje-oculto {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .adornos .heart, .adornos .estrella {
+      position: absolute;
+      animation: floatUp 6s ease-in-out infinite;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    .estrella {
+      width: 10px;
+      height: 10px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 10px yellow;
+      animation: sparkle 1.5s ease-in-out infinite alternate;
+    }
+
+    .adornos .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .adornos .heart:nth-child(2) { left: 25%; animation-delay: 1s; }
+    .adornos .heart:nth-child(3) { left: 50%; animation-delay: 2s; }
+    .adornos .heart:nth-child(4) { left: 75%; animation-delay: 3s; }
+    .adornos .heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+    .adornos .estrella:nth-child(6) { top: 10%; left: 15%; }
+    .adornos .estrella:nth-child(7) { top: 5%; left: 50%; }
+    .adornos .estrella:nth-child(8) { top: 20%; left: 80%; }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+        transform: translateX(0) rotate(45deg) scale(0.5);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        transform: translateX(-20px) rotate(45deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .boton-contenedor {
+      text-align: center;
+      margin-top: -105px;
+    }
+
+    #botonQuiero,
+    #botonCarta {
+      padding: 15px 25px;
+      font-size: 20px;
+      background: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff4d88;
+      transition: all 0.3s ease;
+      animation: pulse 1.2s infinite;
+      margin-top: 10px;
+    }
+
+    #botonQuiero:hover,
+    #botonCarta:hover {
+      background: #ff1a66;
+      box-shadow: 0 0 20px #ff99bb;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenido principal -->
+  <div id="cor">
+    <div class="corazon izquierda cara arriba"></div>
+    <div class="corazon centro" id="corazonCentral"></div>
+    <div class="mensaje-oculto">Siempre estaré contigo 💞</div>
+    <div class="texto">
+      <span>TE QUIERO</span>
+      <span>AMOR MÍO</span>
+    </div>
+    <div class="corazon derecha cara"></div>
+  </div>
+
+  <!-- Adornos flotantes -->
+  <div class="adornos">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+  </div>
+
+  <!-- Botones -->
+  <div class="boton-contenedor">
+    <button id="botonQuiero">Clic si tú también me quieres 💘</button><br><br>
+    <button id="botonCarta">Clic Amor</button>
+  </div>
+
+  <script>
+    // Animación de corazones al hacer clic
+    document.getElementById('botonQuiero').addEventListener('click', () => {
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.position = 'fixed';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.bottom = '-20px';
+        heart.style.animation = 'floatUp 4s ease-in-out';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+    });
+
+    // Redirección a carta.html
+    document.getElementById('botonCarta').addEventListener('click', () => {
+      window.location.href = "carta.html";
+    });
+  </script>
+
+</body>
+</html>
